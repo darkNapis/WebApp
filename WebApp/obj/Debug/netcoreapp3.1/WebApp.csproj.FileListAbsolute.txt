@@ -176,3 +176,6 @@ C:\Users\APIS\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.genrunti
 C:\Users\APIS\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\APIS\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\APIS\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\APIS\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\APIS\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\APIS\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

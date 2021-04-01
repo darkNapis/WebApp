@@ -45,7 +45,7 @@ namespace WebApp
             services.AddTransient<IDataContext>(x => new DataContext());
 
             services.AddDbContext<IDataContext, DataContext>
-                (options => options.UseSqlServer(Configuration["ConnectionStrings:Aleksandar_AleksovskiDB"]));
+                (options => options.UseSqlServer(Configuration["ConnectionStrings:DarkoDB"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

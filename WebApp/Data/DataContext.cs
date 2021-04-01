@@ -30,5 +30,26 @@ namespace WebApp.Data
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Users>()
+                .HasMany<Emails>(emails => emails.Emails)
+                .WithOne(Emails => Emails.Users)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Users>()
+                .HasMany<UsersInRoles>(roles => roles.UsersInRoles)
+                .WithOne(UsersInRoles => UsersInRoles.Users)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Roles>()
+                .HasMany<UsersInRoles>(roles => roles.UsersInRoles)
+                .WithOne(UsersInRoles => UsersInRoles.Roles)
+                .HasForeignKey(x => x.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
     }   
 }

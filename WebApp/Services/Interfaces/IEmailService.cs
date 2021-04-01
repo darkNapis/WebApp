@@ -6,7 +6,7 @@ using WebApp.Entities;
 
 namespace WebApp.Services.Interfaces
 {
-    interface IEmailService
+    public interface IEmailService
     {
 
         List<Emails> Get();

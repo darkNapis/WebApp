@@ -36,17 +36,17 @@ namespace WebApp.Controllers
 
 
         [HttpPost]
-        [Route("create")]
-        public UsersInRoles Create(UsersInRoles model)
+        [Route("add")]
+        public UsersInRoles Add(UsersInRoles model)
         {
             return _userInRolesService.Add(model);
         }
 
         [HttpPatch]
         [Route("update")]
-        public UsersInRoles Update(UsersInRoles club)
+        public UsersInRoles Update(UsersInRoles userInRoles)
         {
-            return _userInRolesService.Update(club);
+            return _userInRolesService.Update(userInRoles);
         }
 
         [HttpDelete]

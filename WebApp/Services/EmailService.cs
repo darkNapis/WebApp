@@ -14,6 +14,11 @@ namespace WebApp.Services
             throw new NotImplementedException();
         }
 
+        public Emails Create(Emails emails)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Delete(int id)
         {
             throw new NotImplementedException();

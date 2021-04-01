@@ -6,7 +6,7 @@ using WebApp.Entities;
 
 namespace WebApp.Services.Interfaces
 {
-    interface IRoleService
+    public interface IRoleService
     {
         List<Roles> Get();
         Roles Get(int id);
