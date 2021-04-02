@@ -26,10 +26,11 @@ namespace WebApp.Data
         {
 
         }
+
         public DataContext()
         {
-
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>()
@@ -49,7 +50,6 @@ namespace WebApp.Data
                 .WithOne(UsersInRoles => UsersInRoles.Roles)
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
-
         }
     }   
 }
