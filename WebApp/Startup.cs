@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using WebApp.Entities;
+using Microsoft.OpenApi.Models;
 
 namespace WebApp
 {
@@ -34,7 +35,10 @@ namespace WebApp
                 // PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
+            });
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEmailService, EmailService>();

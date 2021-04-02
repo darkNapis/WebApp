@@ -26,20 +26,33 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public Users Get(int id)
+        public Users Details(int id)
         {
             return _userService.Get(id);
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public Users GetAll(int id)
+        {
+            return _userService.Get(id);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public Users GetAllPaginated(int id)
+        {
+            return _userService.Get(id);
+        }
 
         [HttpPost]
-        [Route("add")]
-        public Users Add(Users model)
+        [Route("create")]
+        public Users Create(Users model)
         {
             return _userService.Add(model);
         }
 
-        [HttpPatch]
+        [HttpPut]
         [Route("update")]
         public Users Update(Users user)
         {
