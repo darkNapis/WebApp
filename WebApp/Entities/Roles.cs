@@ -7,7 +7,7 @@ namespace WebApp.Entities
 {
     public class Roles
     {
-        public int IdRole { get; set; }
+        public int Id { get; set; }
         public string roleName { get; set; }
 
         public virtual ICollection<UsersInRoles> UsersInRoles { get; set; }

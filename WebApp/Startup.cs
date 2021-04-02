@@ -39,7 +39,7 @@ namespace WebApp
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IUsersInRolesService, UsersInRolesService>();
+            services.AddTransient<IUsersInRolesService, UsersinRolesService>();
 
 
             services.AddTransient<IDataContext>(x => new DataContext());

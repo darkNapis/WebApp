@@ -7,7 +7,7 @@ namespace WebApp.Entities
 {
     public class Users
     {
-        public int IdUser { get; set; }
+        public int Id { get; set; }
         public string userName { get; set; }
         public string name { get; set; }
         public string surName { get; set; }

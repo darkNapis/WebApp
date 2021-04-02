@@ -8,8 +8,8 @@ namespace WebApp.Entities
 {
     public class Emails
     {
-        public int IdEmail { get; set; }
-        public int IdUser { get; set; }
+        public int Id { get; set; }
+        public int User { get; set; }
         public string email { get; set; }
         public string isPrimary { get; set; }
 

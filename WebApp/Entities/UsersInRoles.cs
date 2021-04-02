@@ -8,8 +8,8 @@ namespace WebApp.Entities
 {
     public class UsersInRoles
     {
-        public int IdRole { get; set; }
-        public int IdUser { get; set; }
+        public int Id { get; set; }
+        public int User { get; set; }
         
         [ForeignKey("UserId")]
         public virtual Users Users { get; set; }

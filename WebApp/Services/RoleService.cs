@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Data;
 using WebApp.Entities;
 using WebApp.Services.Interfaces;
 
@@ -9,29 +10,41 @@ namespace WebApp.Services
 {
     public class RoleService : IRoleService
     {
+        private readonly IDataContext db;
+        public RoleService(IDataContext db)
+        {
+            this.db = db;
+        }
         public Roles Add(Roles roles)
         {
-            throw new NotImplementedException();
+            var ro = db.Roles.Add(roles);
+            db.SaveChanges();
+            return ro.Entity;
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var ro = db.Roles.FirstOrDefault(c => c.Id == id);
+            db.Roles.Remove(ro);
+            var changesCount = db.SaveChanges();
+            return changesCount == 1;
         }
 
         public List<Roles> Get()
         {
-            throw new NotImplementedException();
+            return db.Roles.ToList();
         }
 
         public Roles Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Roles.FirstOrDefault(c => c.Id == id);
         }
 
         public Roles Update(Roles roles)
         {
-            throw new NotImplementedException();
+            var updatedRole = db.Roles.Update(roles);
+            db.SaveChanges();
+            return updatedRole.Entity;
         }
     }
 }
