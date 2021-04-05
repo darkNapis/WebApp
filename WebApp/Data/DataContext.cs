@@ -26,10 +26,7 @@ namespace WebApp.Data
         {
 
         }
-        public DataContext()
-        {
-        }
-
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>()

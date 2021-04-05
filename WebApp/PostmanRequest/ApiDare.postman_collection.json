@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "1ff77012-5ac4-4e8d-9b79-02fb6ce48778",
+		"name": "ApiDare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44385/api/User/Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"darko123\",\r\n    \"name\": \"darko\",\r\n    \"surName\": \"nikolikj\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/User/Create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"User",
+						"Create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

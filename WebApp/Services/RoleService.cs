@@ -15,14 +15,14 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Roles Add(Roles roles)
+        public Roles AddUserRoles(Roles roles, int id)
         {
             var ro = db.Roles.Add(roles);
             db.SaveChanges();
             return ro.Entity;
         }
 
-        public bool Delete(int id)
+        public bool RemoveUserRole(Roles UserRole, int id)
         {
             var ro = db.Roles.FirstOrDefault(c => c.Id == id);
             db.Roles.Remove(ro);

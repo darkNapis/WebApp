@@ -7,7 +7,6 @@ using WebApp.Entities;
 using WebApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
-using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
 {
@@ -57,9 +56,9 @@ namespace WebApp.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult Delete(int id)
+        public bool Delete(int id)
         {
-            return StatusCode(StatusCodes.Status200OK, $"User {id} deleted");
+            return _userService.Delete(id);
         }
         [HttpDelete]
         public bool DeleteBatch(int id)

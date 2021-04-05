@@ -12,7 +12,7 @@ using WebApp.Services.Interfaces;
 namespace WebApp.Controllers
 {
     [ApiController]
-    [Route("controller")]
+    [Route("api/[controller]")]
     public class UsersInRolesController : ControllerBase
     {
         private readonly IUsersInRolesService _userInRolesService;

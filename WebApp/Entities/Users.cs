@@ -11,7 +11,6 @@ namespace WebApp.Entities
         public string userName { get; set; }
         public string name { get; set; }
         public string surName { get; set; }
-        public Array emailArray { get; set; }
 
         public virtual ICollection<Emails> Emails { get; set; }
         public virtual ICollection<UsersInRoles> UsersInRoles { get; set; }
