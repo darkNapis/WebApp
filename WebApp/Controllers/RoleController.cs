@@ -8,8 +8,8 @@ using WebApp.Services.Interfaces;
 
 namespace WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("controller")]
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
@@ -30,7 +30,6 @@ namespace WebApp.Controllers
         {
             return _roleService.Get(id);
         }
-
 
         [HttpPost]
         [Route("add")]

@@ -34,7 +34,6 @@ namespace WebApp.Controllers
             return _userInRolesService.Get(id);
         }
 
-
         [HttpPost]
         [Route("add")]
         public UsersInRoles Add(UsersInRoles model)

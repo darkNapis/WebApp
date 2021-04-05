@@ -8,11 +8,12 @@ namespace WebApp.Services.Interfaces
 {
     public interface IUserService
     {
-        List<Users> Get();
-        Users Get(int id);
+        List<Users> GetAll();
+        Users Details(int id);
+        List<Users> GetAllPaginated(int numberPerPage, int offSet);
         Users Add(Users users);
         Users Update(Users users);
         bool Delete(int id);
-
+        bool DeleteBatch(int id);
     }
 }

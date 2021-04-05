@@ -8,8 +8,8 @@ using WebApp.Services.Interfaces;
 
 namespace WebApp.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("controller")]
     public class EmailController : ControllerBase
     {
         private readonly IEmailService _emailService;
@@ -31,9 +31,8 @@ namespace WebApp.Controllers
             return _emailService.Get(id);
         }
 
-
         [HttpPost]
-        [Route("add")]
+        [Route("Create")]
         public Emails Add(Emails model)
         {
             return _emailService.Add(model);
