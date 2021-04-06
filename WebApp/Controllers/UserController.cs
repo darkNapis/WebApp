@@ -35,9 +35,9 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Route("paginated")]
-        public List<Users> GetAllPaginated(int numberOfpage, int offSet)
+        public List<Users> GetAllPaginated(int numberPerPage, int offSet)
         {
-            return _userService.GetAllPaginated(numberOfpage, offSet);
+            return _userService.GetAllPaginated(numberPerPage, offSet);
         }
 
         [HttpPost]

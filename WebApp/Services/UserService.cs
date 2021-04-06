@@ -31,9 +31,9 @@ namespace WebApp.Services
         {
             return db.Users.FirstOrDefault(c => c.Id == id);
         }
-        public List<Users> GetAllPaginated(int numberOfPage, int offSet)
+        public List<Users> GetAllPaginated(int numberPerPage, int offSet)
         {
-            return db.Users.ToList();
+            return db.Users.OrderBy(x => x.Id).Skip(numberPerPage * offSet).Take(numberPerPage).ToList();
         }
         public Users Update(Users users)
         {

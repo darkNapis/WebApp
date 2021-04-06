@@ -48,7 +48,7 @@ namespace WebApp.Controllers
         [HttpDelete]
         [Route("{id}")]
         public bool RemoveUserRole(Roles userRole, int id)
-        {
+        { 
             return _roleService.RemoveUserRole(userRole, id);
         }
     }
