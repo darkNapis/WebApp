@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Data;
 using WebApp.Entities;
 using WebApp.Services.Interfaces;
@@ -17,23 +15,31 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Users Add(Users user)
+        public Users Details(int id)
         {
-            var us = db.Users.Add(user);
-            db.SaveChanges();
-            return us.Entity;
+            var details = db.Users.FirstOrDefault(c => c.Id == id);
+            return details;
+        }
+        public int CheckUser(int id)
+        {
+            var user = db.Users.FirstOrDefault(c => c.Id == id);
+            if (user == null)
+            return 0;
+            return 1;
         }
         public List<Users> GetAll()
         {
             return db.Users.ToList();
         }
-        public Users Details(int id)
+        public List<Users> GetAllPaginated(int offSet, int numberPerPage)
         {
-            return db.Users.FirstOrDefault(c => c.Id == id);
+            return db.Users.ToList();
         }
-        public List<Users> GetAllPaginated(int numberPerPage, int offSet)
+        public Users Create(Users user)
         {
-            return db.Users.OrderBy(x => x.Id).Skip(numberPerPage * offSet).Take(numberPerPage).ToList();
+            var createdUser = db.Users.Add(user);
+            db.SaveChanges();
+            return createdUser.Entity;
         }
         public Users Update(Users users)
         {
@@ -41,6 +47,11 @@ namespace WebApp.Services
             db.SaveChanges();
             return updatedUser.Entity;
         }
+        //public string CheckUserName(string user)
+        //{
+        //    var userExist = db.Users.Where(c => c.userName == user);
+        //    return userExist.ToString();
+        //}
         public bool Delete(int id)
         {
             var us = db.Users.FirstOrDefault(c => c.Id == id);
@@ -48,12 +59,21 @@ namespace WebApp.Services
             var changesCount = db.SaveChanges();
             return changesCount == 1;
         }
-        public bool DeleteBatch(int id)
+        public Users DeleteBatch(Users users)
         {
-            var us = db.Users.FirstOrDefault(c => c.Id == id);
-            db.Users.Remove(us);
-            var changesCount = db.SaveChanges();
-            return changesCount == 1;
+            var removedUser = db.Users.Remove(users);
+            db.SaveChanges();
+            return removedUser.Entity;
+        }
+        public bool CheckUserName(Users userNameExist)
+        {
+            var user = db.Users.Any(c => c.userName.Equals(userNameExist.userName));
+            return user;      
+        }
+        public bool CheckEmail(ICollection<Emails> emailExist)
+        {
+            var email = db.Emails.Any(c => c.email.Equals(emailExist));
+            return email;
         }
     }
 }

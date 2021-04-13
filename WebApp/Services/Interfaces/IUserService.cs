@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WebApp.Entities;
 
 namespace WebApp.Services.Interfaces
 {
     public interface IUserService
     {
-        List<Users> GetAll();
         Users Details(int id);
-        List<Users> GetAllPaginated(int numberPerPage, int offSet);
-        Users Add(Users users);
+        List<Users> GetAll();   
+        List<Users> GetAllPaginated(int offSet, int numberPerPage);
+        Users Create(Users users);
         Users Update(Users users);
         bool Delete(int id);
-        bool DeleteBatch(int id);
+        Users DeleteBatch(Users users);
+        int CheckUser(int id);
+        bool CheckUserName(Users userName);
+        bool CheckEmail(ICollection<Emails> emails);
     }
 }

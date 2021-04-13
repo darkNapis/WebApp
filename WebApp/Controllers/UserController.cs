@@ -7,6 +7,7 @@ using WebApp.Entities;
 using WebApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
 {
@@ -19,41 +20,55 @@ namespace WebApp.Controllers
         {
             _userService = user;
         }
-
         [HttpGet]
         [Route("{id}")]
-        public Users Details(int id)
+        public IActionResult Details(int id)
         {
-            return _userService.Details(id);
+            var user = _userService.Details(id);
+            if (_userService.CheckUser(id) == 0)
+            return NotFound("User Not Found");
+            return Ok(user);
         }
-
         [HttpGet]
         public List<Users> GetAll()
         {
             return _userService.GetAll();
         }
-
         [HttpGet]
         [Route("paginated")]
-        public List<Users> GetAllPaginated(int numberPerPage, int offSet)
+        public ActionResult<Users> GetAllPaginated(int offSet, int numberPerPage)
         {
-            return _userService.GetAllPaginated(numberPerPage, offSet);
+            var numberPerPages = _userService.GetAllPaginated(offSet, numberPerPage).OrderBy(x => x.Id)
+                                   .Skip(offSet * numberPerPage)
+                                   .Take(numberPerPage).ToList();
+            if (numberPerPages == null)
+            {
+                return StatusCode(StatusCodes.Status409Conflict, "Offset out of bounds");
+            }
+            //var newNumberPerPages = _userService.GetAllPaginated(offSet, numberPerPage).OrderBy(x => x.Id)
+            //                                    .Skip(offSet * numberPerPage)
+            //                                    .Take(numberPerPage).ToList();
+            return StatusCode(StatusCodes.Status200OK, numberPerPages);
         }
-
         [HttpPost]
         [Route("create")]
-        public Users Add(Users user)
+        public ActionResult<Users> Create(Users user)                                                                                          
         {
-            return _userService.Add(user);
+            var userExist = _userService.CheckUserName(user);
+            if (userExist)
+                return StatusCode(StatusCodes.Status409Conflict, "UserName exist.");
+            //var emailExist = _userService.CheckEmail(user.Emails);
+            //if (emailExist)
+            //    return StatusCode(StatusCodes.Status409Conflict, "Email exist.");
+            var newUser = _userService.Create(user);
+            return StatusCode(StatusCodes.Status201Created, newUser);
         }
-
         [HttpPut]
         [Route("update")]
         public Users Update(Users user)
         {
             return _userService.Update(user);
         }
-
         [HttpDelete]
         [Route("{id}")]
         public bool Delete(int id)
@@ -61,9 +76,9 @@ namespace WebApp.Controllers
             return _userService.Delete(id);
         }
         [HttpDelete]
-        public bool DeleteBatch(int id)
+        public Users DeleteBatch(Users users)
         {
-            return _userService.DeleteBatch(id);
+            return _userService.DeleteBatch(users);
         }
     }
 }
