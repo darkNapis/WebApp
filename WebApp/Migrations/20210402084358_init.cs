@@ -41,8 +41,8 @@ namespace WebApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     User = table.Column<int>(type: "int", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isPrimary = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPrimary = table.Column<bool>(type: "bit", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

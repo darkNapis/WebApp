@@ -36,7 +36,7 @@ namespace WebApp.Controllers
         }
         [HttpGet]
         [Route("paginated")]
-        public ActionResult<Users> GetAllPaginated(int offSet, int numberPerPage)
+        public ActionResult GetAllPaginated(int offSet, int numberPerPage)
         {
             var numberPerPages = _userService.GetAllPaginated(offSet, numberPerPage).OrderBy(x => x.Id)
                                    .Skip(offSet * numberPerPage)
@@ -45,29 +45,24 @@ namespace WebApp.Controllers
             {
                 return StatusCode(StatusCodes.Status409Conflict, "Offset out of bounds");
             }
-            //var newNumberPerPages = _userService.GetAllPaginated(offSet, numberPerPage).OrderBy(x => x.Id)
-            //                                    .Skip(offSet * numberPerPage)
-            //                                    .Take(numberPerPage).ToList();
             return StatusCode(StatusCodes.Status200OK, numberPerPages);
         }
         [HttpPost]
         [Route("create")]
-        public ActionResult<Users> Create(Users user)                                                                                          
+        public ActionResult Create(Users user)                                                                                          
         {
             var userExist = _userService.CheckUserName(user);
             if (userExist)
-                return StatusCode(StatusCodes.Status409Conflict, "UserName exist.");
-            //var emailExist = _userService.CheckEmail(user.Emails);
-            //if (emailExist)
-            //    return StatusCode(StatusCodes.Status409Conflict, "Email exist.");
+            return StatusCode(StatusCodes.Status409Conflict, "UserName exist.");
             var newUser = _userService.Create(user);
             return StatusCode(StatusCodes.Status201Created, newUser);
         }
         [HttpPut]
         [Route("update")]
-        public Users Update(Users user)
+        public ActionResult Update(Users user)
         {
-            return _userService.Update(user);
+            var newUser = _userService.Update(user);
+            return StatusCode(StatusCodes.Status200OK, newUser);
         }
         [HttpDelete]
         [Route("{id}")]

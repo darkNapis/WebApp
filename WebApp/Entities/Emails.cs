@@ -6,8 +6,8 @@ namespace WebApp.Entities
     {
         public int Id { get; set; }
         public int User { get; set; }
-        public string email { get; set; }
-        public string isPrimary { get; set; }
+        public string Email { get; set; }
+        public bool IsPrimary { get; set; }
 
         [ForeignKey("UserId")]
         public virtual Users Users { get; set; }

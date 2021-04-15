@@ -47,11 +47,6 @@ namespace WebApp.Services
             db.SaveChanges();
             return updatedUser.Entity;
         }
-        //public string CheckUserName(string user)
-        //{
-        //    var userExist = db.Users.Where(c => c.userName == user);
-        //    return userExist.ToString();
-        //}
         public bool Delete(int id)
         {
             var us = db.Users.FirstOrDefault(c => c.Id == id);
@@ -67,12 +62,12 @@ namespace WebApp.Services
         }
         public bool CheckUserName(Users userNameExist)
         {
-            var user = db.Users.Any(c => c.userName.Equals(userNameExist.userName));
+            var user = db.Users.Any(c => c.UserName.Equals(userNameExist.UserName));
             return user;      
         }
-        public bool CheckEmail(ICollection<Emails> emailExist)
+        public bool CheckEmail(Emails emailExist)
         {
-            var email = db.Emails.Any(c => c.email.Equals(emailExist));
+            var email = db.Emails.Any(c => c.Email.Equals(emailExist.Email));  
             return email;
         }
     }
