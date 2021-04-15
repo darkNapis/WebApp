@@ -22,28 +22,28 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public List<UsersInRoles> Get()
+        public List<UserInRole> Get()
         {
             return _userInRolesService.Get();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public UsersInRoles Get(int id)
+        public UserInRole Get(int id)
         {
             return _userInRolesService.Get(id);
         }
 
         [HttpPost]
         [Route("add")]
-        public UsersInRoles Add(UsersInRoles model)
+        public UserInRole Add(UserInRole model)
         {
             return _userInRolesService.Add(model);
         }
 
         [HttpPatch]
         [Route("update")]
-        public UsersInRoles Update(UsersInRoles userInRoles)
+        public UserInRole Update(UserInRole userInRoles)
         {
             return _userInRolesService.Update(userInRoles);
         }

@@ -2,16 +2,16 @@
 
 namespace WebApp.Entities
 {
-    public class UsersInRoles
+    public class UserInRole
     {
         public int Id { get; set; }
         
         [ForeignKey("UserId")]
-        public virtual Users Users { get; set; }
+        public virtual User Users { get; set; }
         public int UserId { get; set; }
 
         [ForeignKey("RoleId")]
-        public virtual Roles Roles { get; set; }
+        public virtual Role Roles { get; set; }
         public int RoleId { get; set; }
     }
 }

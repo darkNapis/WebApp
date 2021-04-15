@@ -18,7 +18,7 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Users Details(int id)
+        public User Details(int id)
         {
             var details = db.Users.FirstOrDefault(c => c.Id == id);
             return details;
@@ -30,19 +30,18 @@ namespace WebApp.Services
             return 0;
             return 1;
         }
-        public List<Users> GetAll()
+        public List<User> GetAll()
         {
             return db.Users.ToList();
         }
-        public async Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage)
+        public async Task<List<User>> GetAllPaginated(int offSet, int numberPerPage)
         {
-            List<Users> paginatedUsers = await db.Users.OrderBy(x => x.Id)
+            List<User> paginatedUsers = await db.Users.OrderBy(x => x.Id)
                                    .Skip(offSet * numberPerPage)
                                    .Take(numberPerPage).ToListAsync();
             //paginatedUsers.OrderBy(x => x.Id)
             //                       .Skip(offSet * numberPerPage)
             //                       .Take(numberPerPage).ToList();
-
             if (paginatedUsers.Count == 0)
             {
                 throw new RestException(System.Net.HttpStatusCode.BadRequest,
@@ -50,13 +49,13 @@ namespace WebApp.Services
             }
             return paginatedUsers;
         }
-        public Users Create(Users user)
+        public User Create(User user)
         {
             var createdUser = db.Users.Add(user);
             db.SaveChanges();
             return createdUser.Entity;
         }
-        public Users Update(Users users)
+        public User Update(User users)
         {
             var updatedUser = db.Users.Update(users);
             db.SaveChanges();
@@ -69,20 +68,20 @@ namespace WebApp.Services
             var changesCount = db.SaveChanges();
             return changesCount == 1;
         }
-        public Users DeleteBatch(Users users)
+        public User DeleteBatch(User users)
         {
             var removedUser = db.Users.Remove(users);
             db.SaveChanges();
             return removedUser.Entity;
         }
-        public bool CheckUserName(Users userNameExist)
+        public bool CheckUserName(User userNameExist)
         {
             var user = db.Users.Any(c => c.UserName.Equals(userNameExist.UserName));
             return user;      
         }
-        public bool CheckEmail(Emails emailExist)
+        public bool CheckEmail(Email emailExist)
         {
-            var email = db.Emails.Any(c => c.Email.Equals(emailExist.Email));  
+            var email = db.Emails.Any(c => c.Emails.Equals(emailExist.Emails));  
             return email;
         }
     }

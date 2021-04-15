@@ -30,13 +30,13 @@ namespace WebApp.Controllers
             return Ok(user);
         }
         [HttpGet]
-        public List<Users> GetAll()
+        public List<User> GetAll()
         {
             return _userService.GetAll();
         }
         [HttpGet]
         [Route("paginated")]
-        public async Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage)
+        public async Task<List<User>> GetAllPaginated(int offSet, int numberPerPage)
         {
             return await _userService.GetAllPaginated(offSet, numberPerPage);
             //if (numberPerPages == null)
@@ -45,7 +45,7 @@ namespace WebApp.Controllers
         }
         [HttpPost]
         [Route("create")]
-        public ActionResult Create(Users user)                                                                                          
+        public ActionResult Create(User user)                                                                                          
         {
             var userExist = _userService.CheckUserName(user);
             if (userExist)
@@ -55,7 +55,7 @@ namespace WebApp.Controllers
         }
         [HttpPut]
         [Route("update")]
-        public ActionResult Update(Users user)
+        public ActionResult Update(User user)
         {
             var newUser = _userService.Update(user);
             return StatusCode(StatusCodes.Status200OK, newUser);
@@ -67,7 +67,7 @@ namespace WebApp.Controllers
             return _userService.Delete(id);
         }
         [HttpDelete]
-        public Users DeleteBatch(Users users)
+        public User DeleteBatch(User users)
         {
             return _userService.DeleteBatch(users);
         }

@@ -9,18 +9,18 @@ namespace WebApp.Data
 {
     public interface IDataContext
     {
-        DbSet<Users> Users { get; set; }
-        DbSet<Emails> Emails { get; set; }
-        DbSet<Roles> Roles { get; set; }
-        DbSet<UsersInRoles> UsersInRoles { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Email> Emails { get; set; }
+        DbSet<Role> Roles { get; set; }
+        DbSet<UserInRole> UsersInRoles { get; set; }
         int SaveChanges();
     }
     public class DataContext : DbContext, IDataContext
     {
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Emails> Emails { get; set; }
-        public DbSet<Roles> Roles { get; set; }
-        public DbSet<UsersInRoles> UsersInRoles { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserInRole> UsersInRoles { get; set; }
 
         public DataContext(DbContextOptions options) : base(options)
         {
@@ -29,20 +29,20 @@ namespace WebApp.Data
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>()
-                .HasMany<Emails>(emails => emails.Emails)
+            modelBuilder.Entity<User>()
+                .HasMany<Email>(emails => emails.Emails)
                 .WithOne(Emails => Emails.Users)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Users>()
-                .HasMany<UsersInRoles>(roles => roles.UsersInRoles)
+            modelBuilder.Entity<User>()
+                .HasMany<UserInRole>(roles => roles.UsersInRoles)
                 .WithOne(UsersInRoles => UsersInRoles.Users)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Roles>()
-                .HasMany<UsersInRoles>(roles => roles.UsersInRoles)
+            modelBuilder.Entity<Role>()
+                .HasMany<UserInRole>(roles => roles.UsersInRoles)
                 .WithOne(UsersInRoles => UsersInRoles.Roles)
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);

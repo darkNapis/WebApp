@@ -19,35 +19,35 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public List<Roles> Get()
+        public List<Role> Get()
         {
             return _roleService.Get();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Roles Get(int id)
+        public Role Get(int id)
         {
             return _roleService.Get(id);
         }
 
         [HttpPost]
         [Route("addUserRoles")]
-        public Roles AddUserRoles(Roles userRole, int id)
+        public Role AddUserRoles(Role userRole, int id)
         {
             return _roleService.AddUserRoles(userRole, id);
         }
 
         [HttpPatch]
         [Route("update")]
-        public Roles Update(Roles role)
+        public Role Update(Role role)
         {
             return _roleService.Update(role);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public bool RemoveUserRole(Roles userRole, int id)
+        public bool RemoveUserRole(Role userRole, int id)
         { 
             return _roleService.RemoveUserRole(userRole, id);
         }

@@ -5,10 +5,10 @@ namespace WebApp.Services.Interfaces
 {
     public interface IUsersInRolesService
     {
-        List<UsersInRoles> Get();
-        UsersInRoles Get(int id);
-        UsersInRoles Add(UsersInRoles userInRoles);
-        UsersInRoles Update(UsersInRoles userInRoles);
+        List<UserInRole> Get();
+        UserInRole Get(int id);
+        UserInRole Add(UserInRole userInRoles);
+        UserInRole Update(UserInRole userInRoles);
         bool Delete(int id);
     }
 }

@@ -13,14 +13,14 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Roles AddUserRoles(Roles roles, int id)
+        public Role AddUserRoles(Role roles, int id)
         {
             var ro = db.Roles.Add(roles);
             db.SaveChanges();
             return ro.Entity;
         }
 
-        public bool RemoveUserRole(Roles UserRole, int id)
+        public bool RemoveUserRole(Role UserRole, int id)
         {
             var ro = db.Roles.FirstOrDefault(c => c.Id == id);
             db.Roles.Remove(ro);
@@ -28,17 +28,17 @@ namespace WebApp.Services
             return changesCount == 1;
         }
 
-        public List<Roles> Get()
+        public List<Role> Get()
         {
             return db.Roles.ToList();
         }
 
-        public Roles Get(int id)
+        public Role Get(int id)
         {
             return db.Roles.FirstOrDefault(c => c.Id == id);
         }
 
-        public Roles Update(Roles roles)
+        public Role Update(Role roles)
         {
             var updatedRole = db.Roles.Update(roles);
             db.SaveChanges();

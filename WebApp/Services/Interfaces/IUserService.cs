@@ -6,15 +6,15 @@ namespace WebApp.Services.Interfaces
 {
     public interface IUserService
     {
-        Users Details(int id);
-        List<Users> GetAll();   
-        Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage);
-        Users Create(Users users);
-        Users Update(Users users);
+        User Details(int id);
+        List<User> GetAll();   
+        Task<List<User>> GetAllPaginated(int offSet, int numberPerPage);
+        User Create(User users);
+        User Update(User users);
         bool Delete(int id);
-        Users DeleteBatch(Users users);
+        User DeleteBatch(User users);
         int CheckUser(int id);
-        bool CheckUserName(Users userName);
-        bool CheckEmail(Emails emails);
+        bool CheckUserName(User userName);
+        bool CheckEmail(Email emails);
     }
 }

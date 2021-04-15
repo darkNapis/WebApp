@@ -13,7 +13,7 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Emails Add(Emails emails)
+        public Email Add(Email emails)
         {
             var em = db.Emails.Add(emails);
             db.SaveChanges();
@@ -28,17 +28,17 @@ namespace WebApp.Services
             return changesCount == 1;
         }
 
-        public List<Emails> Get()
+        public List<Email> Get()
         {
             return db.Emails.ToList();
         }
 
-        public Emails Get(int id)
+        public Email Get(int id)
         {
             return db.Emails.FirstOrDefault(c => c.Id == id);
         }
 
-        public Emails Update(Emails emails)
+        public Email Update(Email emails)
         {
             var updatedEmail = db.Emails.Update(emails);
             db.SaveChanges();

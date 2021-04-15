@@ -5,10 +5,10 @@ namespace WebApp.Services.Interfaces
 {
     public interface IEmailService
     {
-        List<Emails> Get();
-        Emails Get(int id);
-        Emails Add(Emails emails);
-        Emails Update(Emails emails);
+        List<Email> Get();
+        Email Get(int id);
+        Email Add(Email emails);
+        Email Update(Email emails);
         bool Delete(int id);
     }
 }

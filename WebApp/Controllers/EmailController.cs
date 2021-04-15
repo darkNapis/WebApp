@@ -19,28 +19,28 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public List<Emails> Get()
+        public List<Email> Get()
         {
             return _emailService.Get();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Emails Get(int id)
+        public Email Get(int id)
         {
             return _emailService.Get(id);
         }
 
         [HttpPost]
         [Route("Create")]
-        public Emails Add(Emails model)
+        public Email Add(Email model)
         {
             return _emailService.Add(model);
         }
 
         [HttpPatch]
         [Route("update")]
-        public Emails Update(Emails email)
+        public Email Update(Email email)
         {
             return _emailService.Update(email);
         }
