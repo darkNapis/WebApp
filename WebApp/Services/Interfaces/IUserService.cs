@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebApp.Entities;
 
 namespace WebApp.Services.Interfaces
@@ -7,7 +8,7 @@ namespace WebApp.Services.Interfaces
     {
         Users Details(int id);
         List<Users> GetAll();   
-        List<Users> GetAllPaginated(int offSet, int numberPerPage);
+        Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage);
         Users Create(Users users);
         Users Update(Users users);
         bool Delete(int id);

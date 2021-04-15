@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApp.Data;
 using WebApp.Entities;
+using WebApp.Errors;
 using WebApp.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace WebApp.Services
 {
@@ -31,9 +34,21 @@ namespace WebApp.Services
         {
             return db.Users.ToList();
         }
-        public List<Users> GetAllPaginated(int offSet, int numberPerPage)
+        public async Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage)
         {
-            return db.Users.ToList();
+            List<Users> paginatedUsers = await db.Users.OrderBy(x => x.Id)
+                                   .Skip(offSet * numberPerPage)
+                                   .Take(numberPerPage).ToListAsync();
+            //paginatedUsers.OrderBy(x => x.Id)
+            //                       .Skip(offSet * numberPerPage)
+            //                       .Take(numberPerPage).ToList();
+
+            if (paginatedUsers.Count == 0)
+            {
+                throw new RestException(System.Net.HttpStatusCode.BadRequest,
+                    new { users = "Zero users found for this page" });
+            }
+            return paginatedUsers;
         }
         public Users Create(Users user)
         {

@@ -36,16 +36,12 @@ namespace WebApp.Controllers
         }
         [HttpGet]
         [Route("paginated")]
-        public ActionResult GetAllPaginated(int offSet, int numberPerPage)
+        public async Task<List<Users>> GetAllPaginated(int offSet, int numberPerPage)
         {
-            var numberPerPages = _userService.GetAllPaginated(offSet, numberPerPage).OrderBy(x => x.Id)
-                                   .Skip(offSet * numberPerPage)
-                                   .Take(numberPerPage).ToList();
-            if (numberPerPages == null)
-            {
-                return StatusCode(StatusCodes.Status409Conflict, "Offset out of bounds");
-            }
-            return StatusCode(StatusCodes.Status200OK, numberPerPages);
+            return await _userService.GetAllPaginated(offSet, numberPerPage);
+            //if (numberPerPages == null)
+            //return StatusCode(StatusCodes.Status409Conflict, "Offset out of bounds");
+            //return StatusCode(StatusCodes.Status200OK, numberPerPages);
         }
         [HttpPost]
         [Route("create")]

@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using WebApp.Entities;
 using Microsoft.OpenApi.Models;
+using WebApp.Middleware;
 
 namespace WebApp
 {
@@ -51,7 +52,9 @@ namespace WebApp
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             app.UseSwagger();
+            
 
             if (env.IsDevelopment())
             {
@@ -61,7 +64,9 @@ namespace WebApp
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-          
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

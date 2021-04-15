@@ -32,7 +32,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("add")]
+        [Route("addUserRoles")]
         public Roles AddUserRoles(Roles userRole, int id)
         {
             return _roleService.AddUserRoles(userRole, id);
