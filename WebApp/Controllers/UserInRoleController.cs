@@ -15,8 +15,8 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class UserInRoleController : ControllerBase
     {
-        private readonly IUsersInRolesService _userInRolesService;
-        public UserInRoleController(IUsersInRolesService usersInRoles)
+        private readonly IUserInRoleService _userInRolesService;
+        public UserInRoleController(IUserInRoleService usersInRoles)
         {
             _userInRolesService = usersInRoles;
         }

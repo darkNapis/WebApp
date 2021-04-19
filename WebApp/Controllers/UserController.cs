@@ -16,9 +16,15 @@ namespace WebApp.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService user)
+        private readonly IEmailService _emailService;
+        private readonly IRoleService _roleService;
+        private readonly IUserInRoleService _userInRoleService;
+        public UserController(IUserService user, IEmailService email, IRoleService role, IUserInRoleService userInRole)
         {
             _userService = user;
+            _emailService = email;
+            _roleService = role;
+            _userInRoleService = userInRole;
         }
         [HttpGet]
         [Route("{id}")]
@@ -45,12 +51,34 @@ namespace WebApp.Controllers
         }
         [HttpPost]
         [Route("create")]
-        public ActionResult Create(User user)                                                                                          
+        public ActionResult Create(User user, string email1)                                                                                          
         {
             var userExist = _userService.CheckUserName(user);
+            var emailExist = _userService.CheckEmail(email1);
+
+            if (emailExist)
+                return StatusCode(StatusCodes.Status409Conflict, "Email exist.");
             if (userExist)
-            return StatusCode(StatusCodes.Status409Conflict, "UserName exist.");
-            var newUser = _userService.Create(user);
+                return StatusCode(StatusCodes.Status409Conflict, "UserName exist.");
+            var userNew = new User()
+            {
+                Name = user.Name,
+                SurName = user.SurName,
+                UserName = user.UserName,
+            };
+            var newUser = _userService.Create(userNew);
+
+            var email = new Email()
+            {
+                UserId = newUser.Id,
+                Emails = email1,
+                Users = newUser
+
+            };
+
+            var newEmail = _emailService.Create(email);
+            newUser.Emails.Add(email);
+
             return StatusCode(StatusCodes.Status201Created, newUser);
         }
         [HttpPut]

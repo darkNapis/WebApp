@@ -44,7 +44,7 @@ namespace WebApp
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IUsersInRolesService, UserInRoleService>();
+            services.AddTransient<IUserInRoleService, UserInRoleService>();
 
             services.AddDbContext<IDataContext, DataContext>
                 (options => options.UseSqlServer(Configuration["ConnectionStrings:DarkoDB"]));

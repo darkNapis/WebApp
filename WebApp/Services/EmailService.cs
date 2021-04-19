@@ -13,7 +13,7 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Email Add(Email emails)
+        public Email Create(Email emails)
         {
             var em = db.Emails.Add(emails);
             db.SaveChanges();
@@ -43,6 +43,11 @@ namespace WebApp.Services
             var updatedEmail = db.Emails.Update(emails);
             db.SaveChanges();
             return updatedEmail.Entity;
+        }
+        public Email CheckForEmail(string emailExist)
+        {
+            var email = db.Emails.FirstOrDefault(c => c.Emails.Equals(emailExist));
+            return email;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace WebApp.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Emails")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IsPrimary")

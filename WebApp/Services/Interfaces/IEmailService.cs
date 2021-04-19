@@ -7,8 +7,9 @@ namespace WebApp.Services.Interfaces
     {
         List<Email> Get();
         Email Get(int id);
-        Email Add(Email emails);
+        Email Create(Email emails);
         Email Update(Email emails);
         bool Delete(int id);
+        Email CheckForEmail(string emailExist);
     }
 }

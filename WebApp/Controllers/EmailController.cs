@@ -33,9 +33,9 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public Email Add(Email model)
+        public Email Create(Email model)
         {
-            return _emailService.Add(model);
+            return _emailService.Create(model);
         }
 
         [HttpPatch]

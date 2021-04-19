@@ -15,6 +15,6 @@ namespace WebApp.Services.Interfaces
         User DeleteBatch(User users);
         int CheckUser(int id);
         bool CheckUserName(User userName);
-        bool CheckEmail(Email emails);
+        bool CheckEmail(string emails);
     }
 }

@@ -8,6 +8,7 @@ using WebApp.Errors;
 using WebApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Services
 {
@@ -55,6 +56,8 @@ namespace WebApp.Services
             db.SaveChanges();
             return createdUser.Entity;
         }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public User Update(User users)
         {
             var updatedUser = db.Users.Update(users);
@@ -63,8 +66,8 @@ namespace WebApp.Services
         }
         public bool Delete(int id)
         {
-            var us = db.Users.FirstOrDefault(c => c.Id == id);
-            db.Users.Remove(us);
+            var user = db.Users.FirstOrDefault(c => c.Id == id);
+            db.Users.Remove(user);
             var changesCount = db.SaveChanges();
             return changesCount == 1;
         }
@@ -79,9 +82,9 @@ namespace WebApp.Services
             var user = db.Users.Any(c => c.UserName.Equals(userNameExist.UserName));
             return user;      
         }
-        public bool CheckEmail(Email emailExist)
+        public bool CheckEmail(string emailExist)
         {
-            var email = db.Emails.Any(c => c.Emails.Equals(emailExist.Emails));  
+            var email = db.Emails.Any(c => c.Emails.Equals(emailExist));
             return email;
         }
     }

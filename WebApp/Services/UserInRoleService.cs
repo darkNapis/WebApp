@@ -7,7 +7,7 @@ using WebApp.Services.Interfaces;
 namespace WebApp.Services
 {
 
-    public class UserInRoleService : IUsersInRolesService
+    public class UserInRoleService : IUserInRoleService
     {
         private readonly IDataContext db;
         public UserInRoleService(IDataContext db)

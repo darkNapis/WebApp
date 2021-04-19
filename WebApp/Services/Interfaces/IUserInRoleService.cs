@@ -3,7 +3,7 @@ using WebApp.Entities;
 
 namespace WebApp.Services.Interfaces
 {
-    public interface IUsersInRolesService
+    public interface IUserInRoleService
     {
         List<UserInRole> Get();
         UserInRole Get(int id);
