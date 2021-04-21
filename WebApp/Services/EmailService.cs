@@ -28,12 +28,12 @@ namespace WebApp.Services
             return changesCount == 1;
         }
 
-        public List<Email> Get()
+        public List<Email> GetAll()
         {
             return db.Emails.ToList();
         }
 
-        public Email Get(int id)
+        public Email Details(int id)
         {
             return db.Emails.FirstOrDefault(c => c.Id == id);
         }
@@ -43,11 +43,6 @@ namespace WebApp.Services
             var updatedEmail = db.Emails.Update(emails);
             db.SaveChanges();
             return updatedEmail.Entity;
-        }
-        public Email CheckForEmail(string emailExist)
-        {
-            var email = db.Emails.FirstOrDefault(c => c.Emails.Equals(emailExist));
-            return email;
         }
     }
 }

@@ -33,9 +33,9 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("addUserRoles")]
-        public Role AddUserRoles(Role userRole, int id)
+        public Role AddUserRoles(int id, Role userRole)
         {
-            return _roleService.AddUserRoles(userRole, id);
+            return _roleService.AddUserRoles(id, userRole);
         }
 
         [HttpPatch]
@@ -47,9 +47,9 @@ namespace WebApp.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public bool RemoveUserRole(Role userRole, int id)
-        { 
-            return _roleService.RemoveUserRole(userRole, id);
+        public bool RemoveUserRole(int id, Role userRole)
+        {
+            return _roleService.RemoveUserRole(id, userRole);
         }
     }
 }

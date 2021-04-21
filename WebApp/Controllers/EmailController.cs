@@ -21,19 +21,19 @@ namespace WebApp.Controllers
         [HttpGet]
         public List<Email> Get()
         {
-            return _emailService.Get();
+            return _emailService.GetAll();
         }
 
         [HttpGet]
         [Route("{id}")]
         public Email Get(int id)
         {
-            return _emailService.Get(id);
+            return _emailService.Details(id);
         }
 
         [HttpPost]
         [Route("Create")]
-        public Email Create(Email model)
+        public Email Add(Email model)
         {
             return _emailService.Create(model);
         }

@@ -21,16 +21,23 @@ namespace WebApp.Services
         }
         public User Details(int id)
         {
-            var details = db.Users.FirstOrDefault(c => c.Id == id);
-            return details;
-        }
-        public int CheckUser(int id)
-        {
-            var user = db.Users.FirstOrDefault(c => c.Id == id);
+            User user = db.Users.FirstOrDefault(c => c.Id == id);
             if (user == null)
-            return 0;
-            return 1;
+            {
+                throw new RestException(System.Net.HttpStatusCode.NotFound, new { user = "User not found" });
+            }
+
+            return user;
+            //var details = db.Users.FirstOrDefault(c => c.Id == id);
+            //return details;
         }
+        //public int CheckUser(int id)
+        //{
+        //    var user = db.Users.FirstOrDefault(c => c.Id == id);
+        //    if (user == null)
+        //    return 0;
+        //    return 1;
+        //}
         public List<User> GetAll()
         {
             return db.Users.ToList();
@@ -52,12 +59,26 @@ namespace WebApp.Services
         }
         public User Create(User user)
         {
+            var userExist = CheckUserName(user);
+            if (userExist)
+            {
+                throw new RestException(System.Net.HttpStatusCode.BadRequest,
+                    new { users = "Username exist" });
+            }
+            foreach (var email in user.Emails)
+            {
+                var emailExist = CheckEmail(email);
+                if (emailExist)
+                {
+                    throw new RestException(System.Net.HttpStatusCode.BadRequest,
+                        new { emails = "Email already exist." });
+                }
+                var createdEmail = db.Emails.Add(email);
+            }
             var createdUser = db.Users.Add(user);
             db.SaveChanges();
             return createdUser.Entity;
         }
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public User Update(User users)
         {
             var updatedUser = db.Users.Update(users);
@@ -66,8 +87,8 @@ namespace WebApp.Services
         }
         public bool Delete(int id)
         {
-            var user = db.Users.FirstOrDefault(c => c.Id == id);
-            db.Users.Remove(user);
+            var deletedUser = db.Users.FirstOrDefault(c => c.Id == id);
+            db.Users.Remove(deletedUser);
             var changesCount = db.SaveChanges();
             return changesCount == 1;
         }
@@ -80,11 +101,11 @@ namespace WebApp.Services
         public bool CheckUserName(User userNameExist)
         {
             var user = db.Users.Any(c => c.UserName.Equals(userNameExist.UserName));
-            return user;      
+            return user;
         }
-        public bool CheckEmail(string emailExist)
+        public bool CheckEmail(Email emailExist)
         {
-            var email = db.Emails.Any(c => c.Emails.Equals(emailExist));
+            var email = db.Emails.Any(c => c.Emailss.Equals(emailExist));
             return email;
         }
     }

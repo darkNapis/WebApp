@@ -7,8 +7,9 @@ namespace WebApp.Services.Interfaces
     {
         List<Role> Get();
         Role Get(int id);
-        Role AddUserRoles(Role roles, int id);
+        Role AddUserRoles(int id, Role role);
         Role Update(Role roles);
-        bool RemoveUserRole(Role roles, int id);
+        bool RemoveUserRole(int id, Role role);
+        //bool CheckUserRole(int id, Role role);
     }
 }

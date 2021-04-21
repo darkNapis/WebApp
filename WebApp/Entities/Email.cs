@@ -5,10 +5,9 @@ namespace WebApp.Entities
 {
     public class Email
     {
+
         public int Id { get; set; }
-        public int User { get; set; }
-        public string Emails { get; set; }
-        [DefaultValue(false)]
+        public string Emailss { get; set; }
         public bool IsPrimary { get; set; }
 
         [ForeignKey("UserId")]

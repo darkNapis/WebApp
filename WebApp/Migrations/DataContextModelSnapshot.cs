@@ -31,7 +31,7 @@ namespace WebApp.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Emails")
+                    b.Property<string>("Emailss")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsPrimary")
@@ -108,7 +108,7 @@ namespace WebApp.Migrations
             modelBuilder.Entity("WebApp.Entities.Emails", b =>
                 {
                     b.HasOne("WebApp.Entities.Users", "Users")
-                        .WithMany("Emails")
+                        .WithMany("Emailss")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

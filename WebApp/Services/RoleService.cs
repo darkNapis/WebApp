@@ -13,14 +13,23 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public Role AddUserRoles(Role roles, int id)
+        public Role AddUserRoles(int id, Role role)
         {
-            var ro = db.Roles.Add(roles);
+            //var roleExist = CheckUserRole(id, role);
+            //if (roleExist)
+            //{
+            //    throw new RestException(System.Net.HttpStatusCode.BadRequest,
+            //        new { users = "User does not exist" });
+            //}
+            //Role createRole = db.Roles.AddRange(intid, role);
+            //db.SaveChanges();
+            //return createRole;
+            var createRole = db.Roles.Add(role);
             db.SaveChanges();
-            return ro.Entity;
+            return createRole.Entity;
         }
 
-        public bool RemoveUserRole(Role UserRole, int id)
+        public bool RemoveUserRole(int id, Role role)
         {
             var ro = db.Roles.FirstOrDefault(c => c.Id == id);
             db.Roles.Remove(ro);
@@ -43,6 +52,12 @@ namespace WebApp.Services
             var updatedRole = db.Roles.Update(roles);
             db.SaveChanges();
             return updatedRole.Entity;
+        }
+
+        public bool CheckUserRole(int id, Role role)
+        {
+            var userRole = db.Roles.Any(c => c.Id == id & c.RoleName == role.ToString());
+            return userRole;
         }
     }
 }
